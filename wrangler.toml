@@ -1,0 +1,5 @@
+name = "joyful-smiles-site"
+compatibility_date = "2026-01-18"
+
+[site]
+bucket = "."
