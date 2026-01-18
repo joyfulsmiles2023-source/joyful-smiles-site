@@ -37,22 +37,23 @@ img {
 }
 
 .site-header {
-  background: rgba(255, 255, 255, 0.35);
-  border-bottom: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(198, 40, 40, 0.1);
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .header-shell {
-  background: rgba(255, 255, 255, 0.65);
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 14px 30px rgba(43, 12, 12, 0.14);
-  padding: 0.9rem 1.1rem;
-  margin: 0.75rem auto;
-  backdrop-filter: blur(10px);
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  padding: 1rem 0;
+  margin: 0;
+  backdrop-filter: none;
 }
 
 .brand {
@@ -68,9 +69,10 @@ img {
   height: 48px;
   object-fit: cover;
   border-radius: 12px;
-  border: 2px solid var(--color-soft);
-  background: var(--color-surface);
-  box-shadow: 0 6px 12px rgba(43, 12, 12, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(43, 12, 12, 0.15);
+  backdrop-filter: blur(8px);
 }
 
 .brand-name {
@@ -78,6 +80,8 @@ img {
   font-weight: 700;
   font-size: 1.6rem;
   letter-spacing: 0.4px;
+  color: var(--color-text);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
 }
 
 .brand-tagline {
@@ -111,12 +115,20 @@ img {
 }
 
 .hero {
-  padding: 4rem 0 3rem;
+  padding: 7rem 0 14rem;
+  min-height: 100vh;
+  margin-top: -100px;
+  padding-top: calc(7rem + 100px);
+  position: relative;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.4)
     ),
-    url("bg.jpg") center/cover no-repeat;
+    url("bg.jpg") center top/cover no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+  background-size: cover;
+  z-index: 1;
 }
 
 .hero-extend {
@@ -201,6 +213,46 @@ img {
   color: var(--color-muted);
 }
 
+.section-header-with-image {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  align-items: center;
+  gap: 2rem;
+}
+
+.section-header-image {
+  max-width: 200px;
+  height: auto;
+  justify-self: end;
+}
+
+.section-header-content {
+  grid-column: 2;
+  text-align: center;
+}
+
+.section-header-content {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .section-header-with-image {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1.5rem;
+  }
+
+  .section-header-image {
+    max-width: 150px;
+    justify-self: center;
+  }
+
+  .section-header-content {
+    grid-column: 1;
+    text-align: center;
+  }
+}
+
 .section-pill {
   display: inline-block;
   padding: 0.3rem 0.9rem;
@@ -255,6 +307,168 @@ img {
 .review-name {
   font-weight: 600;
   color: var(--color-text);
+}
+
+#reviewsCarousel {
+  position: relative;
+  padding: 0 3rem;
+}
+
+#reviewsCarousel .carousel-inner {
+  padding: 1rem 0;
+}
+
+#reviewsCarousel .carousel-control-prev,
+#reviewsCarousel .carousel-control-next {
+  width: 3rem;
+  height: 3rem;
+  background: var(--color-primary);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#reviewsCarousel .carousel-control-prev {
+  left: -1.5rem;
+}
+
+#reviewsCarousel .carousel-control-next {
+  right: -1.5rem;
+}
+
+#reviewsCarousel .carousel-control-prev:hover,
+#reviewsCarousel .carousel-control-next:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+#reviewsCarousel .carousel-control-prev-icon,
+#reviewsCarousel .carousel-control-next-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+#reviewsCarousel .carousel-indicators {
+  margin-bottom: -2.5rem;
+  margin-top: 2rem;
+}
+
+#reviewsCarousel .carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(198, 40, 40, 0.3);
+  border: none;
+  margin: 0 0.3rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#reviewsCarousel .carousel-indicators button.active {
+  background-color: var(--color-primary);
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  #reviewsCarousel {
+    padding: 0 2.5rem;
+  }
+
+  #reviewsCarousel .carousel-control-prev {
+    left: -1rem;
+  }
+
+  #reviewsCarousel .carousel-control-next {
+    right: -1rem;
+  }
+
+  #reviewsCarousel .carousel-control-prev,
+  #reviewsCarousel .carousel-control-next {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+#galleryCarousel {
+  position: relative;
+  padding: 0 3rem;
+}
+
+#galleryCarousel .carousel-inner {
+  padding: 1rem 0;
+}
+
+#galleryCarousel .carousel-control-prev,
+#galleryCarousel .carousel-control-next {
+  width: 3rem;
+  height: 3rem;
+  background: var(--color-primary);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#galleryCarousel .carousel-control-prev {
+  left: -1.5rem;
+}
+
+#galleryCarousel .carousel-control-next {
+  right: -1.5rem;
+}
+
+#galleryCarousel .carousel-control-prev:hover,
+#galleryCarousel .carousel-control-next:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+#galleryCarousel .carousel-control-prev-icon,
+#galleryCarousel .carousel-control-next-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+#galleryCarousel .carousel-indicators {
+  margin-bottom: -2.5rem;
+  margin-top: 2rem;
+}
+
+#galleryCarousel .carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(198, 40, 40, 0.3);
+  border: none;
+  margin: 0 0.3rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#galleryCarousel .carousel-indicators button.active {
+  background-color: var(--color-primary);
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  #galleryCarousel {
+    padding: 0 2.5rem;
+  }
+
+  #galleryCarousel .carousel-control-prev {
+    left: -1rem;
+  }
+
+  #galleryCarousel .carousel-control-next {
+    right: -1rem;
+  }
+
+  #galleryCarousel .carousel-control-prev,
+  #galleryCarousel .carousel-control-next {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
 .gallery-card {
@@ -387,5 +601,27 @@ img {
   .whatsapp-float {
     right: 1rem;
     bottom: 1rem;
+  }
+
+  .site-header {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .brand-name {
+    font-size: 1.4rem;
+  }
+
+  .brand-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hero {
+    padding: 4rem 0 8rem;
+    margin-top: -80px;
+    padding-top: calc(4rem + 80px);
+    min-height: 80vh;
+    background-attachment: scroll;
   }
 }
